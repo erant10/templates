@@ -1,0 +1,13 @@
+{
+    "workbookKey": "SampleWorkbook",
+    "logoFileName": "some_logo.svg",
+    "description": "some description", 
+    "dataTypesDependencies": [ "CommonSecurityLog" ],
+    "dataConnectorsDependencies": [ ],
+    "previewImagesFileNames": [ "PreviewyImageWhite1.png", "PreviewyImageBlack1.png" ],
+    "version": "1.4",
+    "title": "Some Workbook",
+    "templateRelativePath": "SomeWorkbook.json", // not needed, each workbook folder will contain its own properties
+    "subtitle": "",
+    "provider": "Microsoft"
+  }

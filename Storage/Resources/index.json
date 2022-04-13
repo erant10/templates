@@ -1,0 +1,14 @@
+{
+    "items": [
+        {
+            "type": "WorkbookTemplate",
+            "id": "{{properties.workbookKey}}",
+            "templatePath": "Resources/Workbooks/{{properties.workbookKey}}/{{properties.version}}/azuredeploy.json",
+            "name": "{{properties.title}}",
+            "description": "{{properties.desciption}}",
+            "icon": "Resources/Icons/{{properties.logoFileName}}",
+            "provider": "{{properties.provider}}",
+            "images": ["Resources/Images/{{properties.previewImagesFileNames}}"]
+        }
+    ]
+}
