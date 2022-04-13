@@ -1,0 +1,41 @@
+{
+    "items": [
+        {
+            "parentId": "Resources/Workbooks/{{workbookProperties.workbookKey}}/{{workbookProperties.version}}/azuredeploy.json",
+            "version": "{{workbookProperties.version}}",
+            "dependencies": {
+                "criteria": [
+                    {
+                        "kind": "DataConnector",
+                        "contentId": "{{workbookProperties.dataConnectorsDependencies}}",
+                        "version": ""
+                    },
+                    {
+                        "kind": "DataType",
+                        "contentId": "{{workbookProperties.dataTypesDependencies}}",
+                        "version": ""
+                    }
+                ]
+            },
+            "firstPublishDate": "",
+            "providers": ["{{workbookProperties.provider}}"],
+            "categories": {
+                "domains": []
+            },
+            "source": {
+                "kind": "Community",
+                "name": "",
+                "sourceId": ""
+            },
+            "author": {
+                "name": "",
+                "email": ""
+            },
+            "support": {
+                "name": "",
+                "tier": "",
+                "link": ""
+            }
+        }
+    ]
+}
