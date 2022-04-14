@@ -13,5 +13,5 @@ steps:
 - task: PowerShell@2
   inputs:
     filePath: 'sync.ps1'
-    test-arg: 'test'
-    azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+    testArg: 'test'
+    azureDevopsToken: ${{ secrets.AZURE_DEVOPS_TOKEN }}
