@@ -15,7 +15,7 @@ jobs:
     - name: Sync
       shell: pwsh
       run: |
-        ${{ github.workspace }}/sync.ps1
+        ${{ github.workspace }}\sync.ps1
 
 #sync:
 #        name: Execute Powershell
