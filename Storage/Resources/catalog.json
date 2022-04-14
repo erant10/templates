@@ -35,7 +35,9 @@
                 "name": "",
                 "tier": "",
                 "link": ""
-            }
+            },
+            "previewImages": "{{workbookProperties.previewImagesFileNames.Select(filename => 'Resources/Images/' + filename)}}",
+            "icon": "{{'Resources/Images/' + workbookProperties.logoFileName}}"
         }
     ]
 }
