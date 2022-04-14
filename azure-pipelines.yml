@@ -14,4 +14,3 @@ steps:
   inputs:
     filePath: 'sync.ps1'
     testArg: 'test'
-    azureDevopsToken: ${{ secrets.AZURE_DEVOPS_TOKEN }}
