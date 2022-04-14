@@ -1,0 +1,123 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "minLength": 1,
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Not used, but needed to pass arm-ttk test `Location-Should-Not-Be-Hardcoded`.  We instead use the `workspace-location` which is derived from the LA workspace"
+            }
+        },
+        "workspace-location": {
+            "type": "string",
+            "minLength": 1,
+            "defaultValue": "[parameters('location')]",
+            "metadata": {
+                "description": "Region to deploy solution resources"
+            }
+        },
+        "workspace": {
+            "defaultValue": "<Enter Log Analytics Workspace>",
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Workspace name for Log Analytics where Sentinel is setup"
+            }
+        },
+        "workbookId": {
+            "defaultValue": "[newGuid()]",
+            "type": "string"
+        }
+    },
+    "variables": {
+        "workbookContentId": "1498ab59-d5a6-41ac-966d-2f2ffe292bf8",
+        "_workbookContentId": "[variables('workbookContentId')]",
+        "workbookTemplateSpecName": "[concat(parameters('workspace'),'-',variables('workbookContentId'))]",
+        "workbookVersion": "{{properties.version}}",
+        "workbookResourceId": "[resourceId('Microsoft.Insights/workbooks', parameters('workbookId'))]",
+        "workspaceResourceId": "[resourceId('microsoft.OperationalInsights/Workspaces', parameters('workspace'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/templateSpecs",
+            "apiVersion": "2021-05-01",
+            "name": "[variables('workbookTemplateSpecName')]",
+            "location": "[parameters('workspace-location')]",
+            "tags": {
+                "hidden-sentinelWorkspaceId": "[variables('workspaceResourceId')]",
+                "hidden-sentinelContentType": "Workbook"
+            },
+            "properties": {
+                "description": "Sample workbook",
+                "displayName": "Sample workbook"
+            }
+        },
+        {
+            "type": "Microsoft.Resources/templateSpecs/versions",
+            "apiVersion": "2021-05-01",
+            "name": "[concat(variables('workbookTemplateSpecName'),'/',variables('workbookVersion'))]",
+            "location": "[parameters('workspace-location')]",
+            "tags": {
+                "hidden-sentinelWorkspaceId": "[variables('workspaceResourceId')]",
+                "hidden-sentinelContentType": "Workbook"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/templateSpecs', variables('workbookTemplateSpecName'))]"
+            ],
+            "properties": {
+                "description": "Sample workbook",
+                "mainTemplate": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "[variables('workbookVersion')]",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                            "name": "[parameters('workbookId')]",
+                            "type": "Microsoft.Insights/workbooks",
+                            "location": "[parameters('workspace-location')]",
+                            "kind": "shared",
+                            "apiVersion": "2021-08-01",
+                            "properties": {
+                                "displayName": "Sample workbook",
+                                "serializedData": "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":1,\"content\":\"{\\\"json\\\":\\\"The world is not enough\\\"}\",\"conditionalVisibility\":\"null\"}],\"isLocked\":false}",
+                                "version": "1.0",
+                                "sourceId": "[variables('workspaceResourceId')]",
+                                "category": "sentinel"
+                            }
+                        },
+                        {
+                            "type": "Microsoft.OperationalInsights/workspaces/providers/metadata",
+                            "apiVersion": "2021-03-01-preview",
+                            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/',guid(variables('workbookResourceId')))]",
+                            "properties": {
+                                "parentId": "[variables('workbookResourceId')]",
+                                "contentId": "[variables('_workbookContentId')]",
+                                "kind": "Workbook",
+                                "version": "[variables('workbookVersion')]",
+                                "source": {
+                                    "kind": "Community",
+                                    "name": "",
+                                    "sourceId": ""
+                                },
+                                "author": {
+                                    "name": "",
+                                    "email": "",
+                                    "link": ""
+                                },
+                                "support": {
+                                    "tier": "Community",
+                                    "name": "Microsoft",
+                                    "email": "support@microsoft.com",
+                                    "link": "https://support.microsoft.com/"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
