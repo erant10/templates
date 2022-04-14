@@ -12,7 +12,10 @@ jobs:
     env:
       devopsToken: ${{ secrets.AZURE_DEVOPS_TOKEN }}
     steps:
-    - name: Sync
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Sync Repos
       shell: pwsh
       run: |
         ${{ github.workspace }}\sync.ps1
