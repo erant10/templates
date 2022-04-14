@@ -9,11 +9,11 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-variables:
-  AZURE_DEVOPS_TOKEN: ${{ secrets.AZURE_DEVOPS_TOKEN }} 
+#variables:
+#  AZURE_DEVOPS_TOKEN: ${{ secrets.AZURE_DEVOPS_TOKEN }} 
 
 steps:
 - task: PowerShell@2
   inputs:
     filePath: 'sync.ps1'
-    arguments: -testArg test -AzureDevopsToken $Env:AZURE_DEVOPS_TOKEN
+    arguments: -testArg test
