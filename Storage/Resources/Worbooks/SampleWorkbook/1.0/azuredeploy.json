@@ -98,7 +98,7 @@
                                 "kind": "Workbook",
                                 "version": "[variables('workbookVersion')]",
                                 "source": {
-                                    "kind": "CommunityGitHub",
+                                    "kind": "Community",
                                     "name": "",
                                     "sourceId": ""
                                 },
