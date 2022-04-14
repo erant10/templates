@@ -1,4 +1,5 @@
+[CmdletBinding()]
 param (
-$testArg
+  $testArg
 )
 Write-Output "Executing sync script $testArg"
