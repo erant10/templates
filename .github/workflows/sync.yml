@@ -11,6 +11,7 @@ jobs:
     runs-on: windows-latest
     env:
       devopsToken: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+      directory: ${{ github.workspace }} 
     steps:
     - name: Checkout
       uses: actions/checkout@v1
@@ -18,7 +19,7 @@ jobs:
     - name: Sync Repos
       shell: pwsh
       run: |
-        ${{ github.workspace }}\sync.ps1
+        ${{ github.workspace }}\Scripts\sync.ps1
 
 #sync:
 #        name: Execute Powershell

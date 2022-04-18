@@ -13,7 +13,8 @@ function GetBranchObjectId {
     return $objectId
 }
 
-function PushFileToRepo($path, $content, $objectId, $exists) {
+function PushFileToRepo($path, $content, $exists) {
+    $objectId = GetBranchObjectId
     $status = if ($exists) {"edit"} else {"add"}
     $contentType = "application/json"
 
@@ -60,6 +61,3 @@ function AttemptInvokeRestMethod($method, $url, $body, $contentTypes, $maxRetrie
     While ($Stoploop -eq $false)
     return $result
 }
-
-$objectId = GetBranchObjectId
-PushFileToRepo -path "Test/test.txt" -content "test,test,test" -objectId $objectId
