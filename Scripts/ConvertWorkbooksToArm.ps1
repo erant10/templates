@@ -37,7 +37,7 @@ function removePropertiesRecursively ($resourceObj) {
 function ConvertWorkbooksToArm {
     param (
         # Parameter help description
-        [Parameter(Mandatory)][string] $inputFilePath,
+        [Parameter(Mandatory)][string] $inputFilePath
     )
 
     $file = Get-Item -Path $inputFilePath
