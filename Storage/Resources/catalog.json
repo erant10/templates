@@ -1,7 +1,9 @@
 {
     "items": [
         {
+            "contentId": "{{workbookProperties.workbookKey}}/{{workbookProperties.version}}",
             "parentId": "Resources/Workbooks/{{workbookProperties.workbookKey}}/{{workbookProperties.version}}/azuredeploy.json",
+            "kind": "WorkbookTemplate",
             "version": "{{workbookProperties.version}}",
             "dependencies": {
                 "criteria": [
@@ -37,7 +39,8 @@
                 "tier": "",
                 "link": ""
             },
-            "previewImages": "{{workbookProperties.previewImagesFileNames.Select(filename => 'Resources/Images/' + filename)}}",
+            "previewImages": "{{workbookProperties.previewImagesFileNames.Where(_.contains('White')).Select(filename => 'Resources/Images/' + filename)}}",
+            "previewImagesDark": "{{workbookProperties.previewImagesFileNames.Where(_.contains('Black')).Select(filename => 'Resources/Images/' + filename)}}",
             "icon": "{{'Resources/Images/' + workbookProperties.logoFileName}}"
         }
     ]
