@@ -18,6 +18,7 @@
                 ]
             },
             "firstPublishDate": "",
+            "lastPublishDate": "",
             "providers": ["{{workbookProperties.provider}}"],
             "categories": {
                 "domains": []
