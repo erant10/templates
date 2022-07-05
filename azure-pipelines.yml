@@ -9,9 +9,14 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+resources:
+  repositories:
+  - repository: Templates # In a different organization
+    endpoint: eran-test-service-connection
+    type: git
+    name: Sentinel-ContentAsCode/Templates
+
+
 steps:
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: 'Scripts/sync.py'
+- checkout: Templates
 
