@@ -1,3 +1,3 @@
 import sys
 
-print(f"running sync with python {sys.version}")
+print(f"running sync.py with python {sys.version}")
