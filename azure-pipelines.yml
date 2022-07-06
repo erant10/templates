@@ -12,10 +12,9 @@ pool:
 resources:
   repositories:
   - repository: Templates # In a different organization
-    endpoint: eran-test-service-connection
     type: git
     name: Sentinel-ContentAsCode/Templates
-
+#    endpoint: eran-test-service-connection
 
 steps:
 - checkout: Templates
