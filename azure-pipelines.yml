@@ -40,10 +40,10 @@ jobs:
       git remote -v
       echo "git checkout branch"
       git checkout -b $(branchName)
-      echo "copying content"
-      rsync -a --delete $(Build.SourcesDirectory)/templates/GitHub/ $(Build.SourcesDirectory)/Templates/
-      echo "DIR"
-      dir
+      echo "copying connectors"
+      rsync -a --delete $(Build.SourcesDirectory)/templates/GitHub/Connectors/ $(Build.SourcesDirectory)/Templates/Connectors/
+      echo "copying workbooks"
+      rsync -a --delete $(Build.SourcesDirectory)/templates/GitHub/Workbooks/ $(Build.SourcesDirectory)/Templates/Workbooks/
       git add .
       git commit -m "sync content"
       git push origin $(branchName)
