@@ -18,7 +18,10 @@ resources:
 
 steps:
 - checkout: self
+  path: TemplatesGH
+  
 - checkout: Templates
+  path: TemplatesADO
 
 - script: |
     echo "Starting script"
