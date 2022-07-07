@@ -1,8 +1,9 @@
+$branchTragetPath=$args[0]
+
 $user = ""
 $token = "$(System.AccessToken)"
-$branchTarget = "refs/heads/testBranch"
+$branchTarget = "refs/heads/$(branchTragetPath)"
 $branchSource = "refs/heads/main"
-$branchTragetPath = $branchTarget -replace "refs/heads/", ""
 $teamProject = "$(System.TeamProject)"
 $repoName = "$(Build.Repository.Name)"
 $orgUrl = "$(System.CollectionUri)"
