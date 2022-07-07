@@ -40,7 +40,7 @@ jobs:
       git remote -v
       echo "git checkout branch"
       git checkout -b $(branchName)
-      echo "copying connectors"
+      echo "copying content"
       rsync -a --delete $(Build.SourcesDirectory)/templates/GitHub/ $(Build.SourcesDirectory)/Templates/
       git add .
       git commit -m "sync content"
