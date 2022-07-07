@@ -17,6 +17,7 @@ resources:
 #    endpoint: eran-test-service-connection
 
 steps:
+- checkout: self
 - checkout: Templates
 
 - script: |
