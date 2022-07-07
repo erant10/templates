@@ -41,9 +41,9 @@ jobs:
       echo "git checkout branch"
       git checkout -b $(branchName)
       echo "copying connectors"
-      rsync -a --delete $(Build.SourcesDirectory)/templates/GitHub $(Build.SourcesDirectory)/Templates
+      rsync -a --delete $(Build.SourcesDirectory)/templates/GitHub/ $(Build.SourcesDirectory)/Templates/
       git add .
-      git commit -m "data conectors"
+      git commit -m "sync content"
       git push origin $(branchName)
 
   - task: PowerShell@2
