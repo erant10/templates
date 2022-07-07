@@ -6,44 +6,47 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+jobs:
+- job: CreatePulRequest
+  pool:
+    vmImage: ubuntu-latest
 
-resources:
-  repositories:
-  - repository: Templates # In a different organization
-    type: git
-    name: Sentinel-ContentAsCode/Templates
+  resources:
+    repositories:
+    - repository: Templates # In a different organization
+      type: git
+      name: Sentinel-ContentAsCode/Templates
 
-variables:
-  branchName: test
+  variables:
+    branchName: test
 
-steps:
-- checkout: self  
-- checkout: Templates
-  persistCredentials: true
-- task: PowerShell@2
-  inputs:
-    script: |
-      $date=$(Get-Date -Format g);
-      $branchName = "branchName_$date"
-      Write-Host "##vso[task.setvariable variable=branchName]$branchName"
-    
-- script: |
-    echo "Starting script"
-    git config --global user.email "ertoleda@microsoft.com"
-    git config --global user.name "Eran"
-    cd $(Build.SourcesDirectory)/Templates
-    echo "git remote -v"
-    git remote -v
-    echo "git checkout branch"
-    git checkout -b ${{variables.branchName}}
-    echo "test" > test.txt
-    git add test.txt
-    git commit -m "test commit"
-    git push origin ${{variables.branchName}}
+  steps:
+  - checkout: self  
+  - checkout: Templates
+    persistCredentials: true
+  - task: PowerShell@2
+    inputs:
+      targetType: inline
+      script: |
+        $date=$(Get-Date -Format g);
+        $branchName = "branchName_$date"
+        Write-Host "##vso[task.setvariable variable=branchName]$branchName"
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'filePath' # Optional. Options: filePath, inline
-    filePath: Scripts/CreatePRBuildTask.ps1
+  - script: |
+      echo "Starting script"
+      git config --global user.email "ertoleda@microsoft.com"
+      git config --global user.name "Eran"
+      cd $(Build.SourcesDirectory)/Templates
+      echo "git remote -v"
+      git remote -v
+      echo "git checkout branch"
+      git checkout -b ${{variables.branchName}}
+      echo "test" > test.txt
+      git add test.txt
+      git commit -m "test commit"
+      git push origin ${{variables.branchName}}
+
+  - task: PowerShell@2
+    inputs:
+      targetType: 'filePath'
+      filePath: Scripts/CreatePRBuildTask.ps1
