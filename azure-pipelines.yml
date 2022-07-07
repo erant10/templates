@@ -42,7 +42,7 @@ jobs:
       git commit -m "test commit"
       git push origin $(branchName)
 
-  - powershell:
+  - task: PowerShell@2
     inputs:
       targetType: 'filePath'
       filePath: Templates/Scripts/CreatePRBuildTask.ps1
