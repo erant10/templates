@@ -45,6 +45,9 @@ jobs:
   - task: PowerShell@2
     env:
       SYSTEM_ACCESSTOKEN: $(system.accesstoken)
+      SYSTEM_TEAMPROJECT: $(System.TeamProject)
+      SYSTEM_COLLECTIONURI: $(System.CollectionUri)
+      BUILD_REPONAME: $(Build.Repository.Name)
     inputs:
       targetType: 'filePath'
       filePath: Templates/Scripts/CreatePRBuildTask.ps1
