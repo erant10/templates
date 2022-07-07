@@ -36,11 +36,11 @@ jobs:
       echo "git remote -v"
       git remote -v
       echo "git checkout branch"
-      git checkout -b ${{variables.branchName}}
+      git checkout -b $(branchName)
       echo "test" > test.txt
       git add test.txt
       git commit -m "test commit"
-      git push origin ${{variables.branchName}}
+      git push origin $(branchName)
 
   - task: PowerShell@2
     inputs:
