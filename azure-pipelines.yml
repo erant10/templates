@@ -19,6 +19,7 @@ resources:
 steps:
 - checkout: self  
 - checkout: Templates
+  persistCredentials: true
 
 - script: |
     echo "Starting script"
