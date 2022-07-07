@@ -13,7 +13,7 @@ resources:
     name: Sentinel-ContentAsCode/Templates
 
 jobs:
-- job: CreatePulRequest
+- job: CreatePullRequest
   pool:
     vmImage: ubuntu-latest
 
@@ -23,7 +23,7 @@ jobs:
     persistCredentials: true
   
   - powershell: |
-      $date=$(Get-Date -Format g);
+      $date=$(Get-Date -Format "yyyyMMdd_HHmm");
       $branchName = "branchName_$date"
       Write-Host "BranchName: $branchName"
       Write-Host "##vso[task.setvariable variable=branchName]$branchName"
