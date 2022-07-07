@@ -17,11 +17,8 @@ resources:
 #    endpoint: eran-test-service-connection
 
 steps:
-- checkout: self
-  path: TemplatesGH
-  
+- checkout: self  
 - checkout: Templates
-  path: TemplatesADO
 
 - script: |
     echo "Starting script"
@@ -29,7 +26,7 @@ steps:
     dir $(Build.SourcesDirectory)
     git config --global user.email "ertoleda@microsoft.com"
     git config --global user.name "Eran"
-    cd $(Build.SourcesDirectory)/Templates
+    cd $(Build.SourcesDirectory)/s/Templates
     echo "git remote -v"
     git remote -v
     echo "git checkout branch"
