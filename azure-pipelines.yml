@@ -6,20 +6,24 @@
 trigger:
 - main
 
+variables:
+  targetProjectName: Sentinel-ContentAsCode
+  targetRepoName: Templates
+
 resources:
   repositories:
-  - repository: Templates # In a different organization
+  - repository: $(targetRepoName)
     type: git
-    name: Sentinel-ContentAsCode/Templates
+    name: $(targetProjectName)/$(targetRepoName)
 
 jobs:
 - job: CreatePullRequest
   pool:
     vmImage: ubuntu-latest
-
+  
   steps:
   - checkout: self  
-  - checkout: Templates
+  - checkout: $(targetRepoName)
     persistCredentials: true
   
   - powershell: |
@@ -47,7 +51,7 @@ jobs:
       SYSTEM_ACCESSTOKEN: $(system.accesstoken)
       SYSTEM_TEAMPROJECT: $(System.TeamProject)
       SYSTEM_COLLECTIONURI: $(System.CollectionUri)
-      BUILD_REPONAME: $(Build.Repository.Name)
+      BUILD_REPONAME: $(targetRepoName)
     inputs:
       targetType: 'filePath'
       filePath: Templates/Scripts/CreatePRBuildTask.ps1
