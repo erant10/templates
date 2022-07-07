@@ -17,20 +17,16 @@ jobs:
   pool:
     vmImage: ubuntu-latest
 
-  variables:
-    branchName: test
-
   steps:
   - checkout: self  
   - checkout: Templates
     persistCredentials: true
-  - task: PowerShell@2
-    inputs:
-      targetType: inline
-      script: |
-        $date=$(Get-Date -Format g);
-        $branchName = "branchName_$date"
-        Write-Host "##vso[task.setvariable variable=branchName]$branchName"
+  
+  - powershell: |
+      $date=$(Get-Date -Format g);
+      $branchName = "branchName_$date"
+      Write-Host "BranchName: $branchName"
+      Write-Host "##vso[task.setvariable variable=branchName]$branchName"
 
   - script: |
       echo "Starting script"
