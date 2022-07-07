@@ -36,3 +36,8 @@ steps:
     git add test.txt
     git commit -m "test commit"
     git push origin testBranch
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'filePath' # Optional. Options: filePath, inline
+    filePath: Scripts/CreatePRBuildTask.ps1
