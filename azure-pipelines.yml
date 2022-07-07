@@ -19,3 +19,13 @@ resources:
 steps:
 - checkout: Templates
 
+- script: |
+  echo "Starting script"
+  dir $(Build.SourcesDirectory)
+  cd $(Build.SourcesDirectory)/Templates
+  git remote -v
+  git checkout -b testBranch
+  echo "test" > test.txt
+  git add test.txt
+  git commit -m "test commit"
+  git push origin testBranch
