@@ -6,16 +6,16 @@
 trigger:
 - main
 
+resources:
+  repositories:
+  - repository: Templates # In a different organization
+    type: git
+    name: Sentinel-ContentAsCode/Templates
+
 jobs:
 - job: CreatePulRequest
   pool:
     vmImage: ubuntu-latest
-
-  resources:
-    repositories:
-    - repository: Templates # In a different organization
-      type: git
-      name: Sentinel-ContentAsCode/Templates
 
   variables:
     branchName: test
