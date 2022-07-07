@@ -22,7 +22,7 @@ jobs:
   
   steps:
   - checkout: self  
-  - checkout: $(targetRepoName)
+  - checkout: Templates
     persistCredentials: true
   
   - powershell: |
