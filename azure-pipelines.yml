@@ -45,4 +45,4 @@ jobs:
   - task: PowerShell@2
     inputs:
       targetType: 'filePath'
-      filePath: Scripts/CreatePRBuildTask.ps1
+      filePath: Templates/Scripts/CreatePRBuildTask.ps1
