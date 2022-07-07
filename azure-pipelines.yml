@@ -7,14 +7,13 @@ trigger:
 - main
 
 variables:
-  targetProjectName: Sentinel-ContentAsCode
   targetRepoName: Templates
 
 resources:
   repositories:
-  - repository: $(targetRepoName)
+  - repository: Templates
     type: git
-    name: $(targetProjectName)/$(targetRepoName)
+    name: Sentinel-ContentAsCode/Templates
 
 jobs:
 - job: CreatePullRequest
