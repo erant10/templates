@@ -17,7 +17,7 @@ resources:
 #    endpoint: eran-test-service-connection
 
 variables:
-  startime: $[format('{0:yyyyMMdd}', pipeline.startTime)]
+  startime: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
 
 steps:
 - checkout: self  
