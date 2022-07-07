@@ -20,12 +20,17 @@ steps:
 - checkout: Templates
 
 - script: |
-  echo "Starting script"
-  dir $(Build.SourcesDirectory)
-  cd $(Build.SourcesDirectory)/Templates
-  git remote -v
-  git checkout -b testBranch
-  echo "test" > test.txt
-  git add test.txt
-  git commit -m "test commit"
-  git push origin testBranch
+    echo "Starting script"
+    ECHO DIR
+    dir $(Build.SourcesDirectory)
+    git config --global user.email "ertoleda@microsoft.com"
+    git config --global user.name "Eran"
+    cd $(Build.SourcesDirectory)/Templates
+    ECHO GIT REMOTE
+    git remote -v
+    ECHO GIT CHECKOUT
+    git checkout -b testBranch
+    echo "test" > test.txt
+    git add test.txt
+    git commit -m "test commit"
+    git push origin testBranch
