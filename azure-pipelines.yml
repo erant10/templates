@@ -51,6 +51,7 @@ jobs:
       SYSTEM_TEAMPROJECT: $(System.TeamProject)
       SYSTEM_COLLECTIONURI: $(System.CollectionUri)
       BUILD_REPONAME: $(targetRepoName)
+      BRANCHNAME: $(branchName)
     inputs:
       targetType: 'filePath'
       filePath: Templates/Scripts/CreatePRBuildTask.ps1
