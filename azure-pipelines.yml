@@ -43,8 +43,9 @@ jobs:
       git push origin $(branchName)
 
   - task: PowerShell@2
+    env:
+      SYSTEM_ACCESSTOKEN: $(system.accesstoken)
     inputs:
       targetType: 'filePath'
       filePath: Templates/Scripts/CreatePRBuildTask.ps1
-      env:
-        SYSTEM_ACCESSTOKEN: $(system.accesstoken)
+
