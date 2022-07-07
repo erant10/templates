@@ -27,7 +27,6 @@ steps:
 - script: |
     echo "Starting script"
     echo ${{variables.startime}}
-    echo ${{pipeline.startime}}
     echo "DIR"
     dir $(Build.SourcesDirectory)
     git config --global user.email "ertoleda@microsoft.com"
